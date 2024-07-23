@@ -7,6 +7,8 @@
 # next.js
 /.next/
 
+#dis
+/dist
 
 # debug
 npm-debug.log*

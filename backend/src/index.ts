@@ -25,9 +25,8 @@ const dataSchema = new mongoose.Schema({
 
  const Data = mongoose.model('Data', dataSchema);
 
-// Example API URLs for demonstration using CoinGecko
 const API_URL_FOR_BTC = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
-const API_URL_FOR_ETH = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd'; // Using Ethereum as an example
+const API_URL_FOR_ETH = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd';
 const API_URL_FOR_OS = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereans&vs_currencies=usd';
 const API_URL_FOR_BMON = 'https://api.coingecko.com/api/v3/simple/price?ids=binamon&vs_currencies=usd';
 const API_URL_FOR_BCS = 'https://api.coingecko.com/api/v3/simple/price?ids=bitclouds&vs_currencies=usd';
@@ -36,7 +35,7 @@ const API_URL_FOR_BCS = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcl
 const fetchData = async (symbol: string, apiUrl: string) => {
   try {
     const response = await axios.get(apiUrl);
-    const price = response.data[symbol].usd; // Adjust based on API response structure
+    const price = response.data[symbol].usd;
     const data = new Data({ symbol, price, timestamp: new Date() });
     await data.save();
   } catch (error) {
@@ -52,7 +51,6 @@ setInterval(() => {
   fetchData('ethereans',API_URL_FOR_OS);
   fetchData('binamon', API_URL_FOR_BMON);
   fetchData('bitclouds', API_URL_FOR_BCS);
-  // Add more symbols as nee
 }, 5000);
 
 // API endpoint to get data
